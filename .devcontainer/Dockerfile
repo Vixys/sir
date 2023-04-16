@@ -4,4 +4,5 @@ RUN apt-get update
 
 USER vscode
 
-RUN cargo install grcov
+RUN cargo install grcov \
+    && rustup component add llvm-tools-preview
