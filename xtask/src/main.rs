@@ -50,12 +50,12 @@ fn cover() -> Result<(), DynError> {
     println!("Ok");
 
     println!("=== generating report ===");
-    let (fmt, file) = match CoverageFormat::Markdown {
+    let (fmt, file) = match CoverageFormat::Html {
         CoverageFormat::Html => ("html", "coverage/html"),
         CoverageFormat::Markdown => ("markdown", "coverage/html"),
         // CoverageFormat::Lcov => ("lcov", "coverage/tests.lcov")
     };
-    cmd!(
+    let result = cmd!(
         "grcov",
         ".",
         "--binary-path",
@@ -74,14 +74,18 @@ fn cover() -> Result<(), DynError> {
         "xtask/*",
         "--ignore",
         "*/src/tests/*",
-        // "-o",
-        // file,
+        "-o",
+        file,
     )
-    .run()?;
+    .run();
 
-    println!("Ok");
-
-    println!("report location: {file}");
+    match result {
+        Ok(_) => {
+            println!("Ok");
+            println!("report location: {file}");
+        },
+        Err(err) => println!("KO: {}", err),
+    }
 
     cmd!("find", ".", "-name", "*.profraw", "-exec", "rm", "{}", ";").run()?;
 
