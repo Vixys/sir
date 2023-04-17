@@ -15,7 +15,8 @@
 				"bungcip.better-toml",
 				"belfz.search-crates-io",
 				"usernamehw.errorlens",
-				"vadimcn.vscode-lldb"
+				"vadimcn.vscode-lldb",
+				"ryanluker.vscode-coverage-gutters"
 			]
 		}
 	}

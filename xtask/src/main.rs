@@ -16,7 +16,7 @@ struct XtaskArgs {
 
 enum CoverageFormat {
     Html,
-    Markdown,
+    Lcov,
     // Lcov
 }
 #[derive(Subcommand)]
@@ -50,16 +50,15 @@ fn cover() -> Result<(), DynError> {
     println!("Ok");
 
     println!("=== generating report ===");
-    let (fmt, file) = match CoverageFormat::Html {
+    let (fmt, file) = match CoverageFormat::Lcov {
         CoverageFormat::Html => ("html", "coverage/html"),
-        CoverageFormat::Markdown => ("markdown", "coverage/html"),
-        // CoverageFormat::Lcov => ("lcov", "coverage/tests.lcov")
+        CoverageFormat::Lcov => ("lcov", "coverage/report.lcov"),
     };
     let result = cmd!(
         "grcov",
         ".",
         "--binary-path",
-        "./target/debug/deps",
+        "./target/debug/",
         "-s",
         ".",
         "-t",
