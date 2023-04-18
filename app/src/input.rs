@@ -44,7 +44,11 @@ impl SourceInput for FileInput {
                 .read(&mut buffer)
                 .map_err(|err| RCatError::new(self.get_file_path(), err.to_string()))?;
 
-            debug!("{}: writing to output. ({} bytes read)", self.get_file_path(), read);
+            debug!(
+                "{}: writing to output. ({} bytes read)",
+                self.get_file_path(),
+                read
+            );
             write!(
                 writer,
                 "{}",
