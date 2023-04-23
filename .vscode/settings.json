@@ -1,0 +1,10 @@
+{
+    "rust-analyzer.linkedProjects": [
+        "./Cargo.toml",
+        "./Cargo.toml"
+    ],
+    "coverage-gutters.coverageFileNames": [
+        "coverage/lcov.info"
+    ],
+    "rust-analyzer.showUnlinkedFileNotification": false
+}

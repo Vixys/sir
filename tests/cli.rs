@@ -33,6 +33,23 @@ fn display_content_in_file() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[test]
+fn display_content_in_filewith_show_ends() -> Result<(), Box<dyn std::error::Error>> {
+    let file = assert_fs::NamedTempFile::new("sample.txt")?;
+    file.touch()?;
+    file.write_str("file_content\n")?;
+    let mut cmd = Command::cargo_bin("rcat")?;
+
+    cmd.arg("-E");
+    cmd.arg(file.as_os_str());
+
+    cmd.assert()
+        .success()
+        .stdout(predicate::str::contains("file_content$\n"));
+
+    Ok(())
+}
+
+#[test]
 fn display_content_in_multiple_files() -> Result<(), Box<dyn std::error::Error>> {
     let file = assert_fs::NamedTempFile::new("sample.txt")?;
     file.touch()?;

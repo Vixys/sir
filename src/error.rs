@@ -1,7 +1,12 @@
+use std::error::Error;
+
+#[derive(Debug)]
 pub struct RCatError {
     source: String,
     reason: String,
 }
+
+impl Error for RCatError {}
 
 impl RCatError {
     pub fn new(source: String, reason: String) -> RCatError {
@@ -22,6 +27,7 @@ mod test {
     #[test]
     fn new_succeed() {
         let result = RCatError::new("some_source".to_string(), "some_error".to_string());
+
         assert_eq!(result.source, "some_source".to_string());
         assert_eq!(result.reason, "some_error".to_string());
     }
