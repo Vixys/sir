@@ -1,7 +1,12 @@
 [package]
-name = "rcat"
+name = "sir"
 version = "0.1.0"
 edition = "2021"
+description = "SIR is a Rust-based command line application mimicking the 'cat' command, designed for educational purposes."
+license-file = "LICENSE"
+repository = "https://github.com/Vixys/sir"
+authors = ["Sébastien Marichal <sebmarichal@gmail.com>"]
+exclude = ["tests/*", "target/*", "README.md", "LICENSE", ".tarpaulin.toml", ".gitignore", ".vscode", ".devcontainer"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
